@@ -19,8 +19,8 @@ export default function HomePage() {
             Featured rentals
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Six starter units below — swap images, specs, and prices in one content file when the
-            business plan is ready.
+            Starter lineup below — swap placeholder photos, specs, and zone prices in one content file
+            when inventory is final.
           </p>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
             {featured.map((house) => (

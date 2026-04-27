@@ -3,22 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --background: 210 40% 98%;
-  --foreground: 215 32% 17%;
+  /* Warm off-white page, deep slate text — reads “local service,” not toy catalog */
+  --background: 40 33% 98%;
+  --foreground: 222 32% 16%;
   --card: 0 0% 100%;
-  --card-foreground: 215 32% 17%;
-  --primary: 187 61% 28%;
+  --card-foreground: 222 32% 16%;
+  /* Teal primary: trustworthy, OC-outdoor */
+  --primary: 188 58% 30%;
   --primary-foreground: 0 0% 100%;
-  --accent: 16 85% 57%;
+  /* Warm coral CTA accent */
+  --accent: 18 78% 52%;
   --accent-foreground: 0 0% 100%;
-  --muted: 210 30% 94%;
-  --muted-foreground: 215 16% 40%;
-  --border: 214 24% 88%;
-  --radius: 0.75rem;
+  --muted: 210 28% 93%;
+  --muted-foreground: 220 12% 38%;
+  --border: 214 22% 86%;
+  --radius: 0.625rem;
+  /* Zone strip accents (service areas + optional UI cues) */
+  --zone-north: 201 75% 38%;
+  --zone-central: 188 58% 30%;
+  --zone-south: 32 92% 45%;
 }
 
 body {
   @apply bg-background text-foreground antialiased;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 @layer utilities {

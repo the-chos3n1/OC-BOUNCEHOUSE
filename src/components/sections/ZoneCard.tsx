@@ -1,8 +1,16 @@
-import type { Zone } from "@/content/site";
+import type { Zone, ZoneId } from "@/content/site";
+
+const zoneStripe: Record<ZoneId, string> = {
+  north_oc: "bg-zone-north",
+  central_oc: "bg-zone-central",
+  south_oc: "bg-zone-south",
+};
 
 export function ZoneCard({ zone }: { zone: Zone }) {
   return (
-    <article className="rounded-lg border border-border bg-card p-6 shadow-sm">
+    <article className="relative overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+      <div className={`h-1 w-full ${zoneStripe[zone.id]}`} aria-hidden />
+      <div className="p-6">
       <h3 className="font-display text-xl font-semibold">{zone.label}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{zone.description}</p>
       <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -18,6 +26,7 @@ export function ZoneCard({ zone }: { zone: Zone }) {
           </li>
         ))}
       </ul>
+      </div>
     </article>
   );
 }

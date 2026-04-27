@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${display.variable}`}>
-      <body className="relative min-h-dvh font-sans">
+      <body className="relative min-h-dvh font-sans text-base leading-relaxed">
         <a
           href="#main-content"
           className="absolute left-4 top-0 z-[100] -translate-y-24 rounded-md bg-card px-4 py-2 text-sm font-medium text-foreground shadow-md transition-transform focus:translate-y-4 focus:outline-none focus:ring-2 focus:ring-primary"

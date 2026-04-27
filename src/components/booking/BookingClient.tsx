@@ -102,24 +102,24 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
           aria-describedby="stripe-mode-banner"
         >
           <Card id="stripe-mode-banner">
-            <CardHeader className="flex flex-row items-start gap-3 space-y-0">
+            <CardHeader className="flex flex-row items-start gap-3 space-y-0 pb-4">
               <Info className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
-              <div>
-                <CardTitle className="text-base">Stripe status</CardTitle>
-                <CardDescription>
+              <div className="min-w-0">
+                <CardTitle className="text-base">Payments (design phase)</CardTitle>
+                <CardDescription className="mt-1.5 text-pretty">
                   {stripeDemo ? (
                     <>
-                      <strong>Demo mode:</strong> no charges. Add{" "}
-                      <code className="rounded bg-muted px-1 text-xs">STRIPE_SECRET_KEY</code> when
-                      you are ready to implement Checkout Sessions server-side, then confirm with{" "}
+                      <strong>Demo mode:</strong> no card charges. When you are ready, add{" "}
+                      <code className="rounded bg-muted px-1 text-xs">STRIPE_SECRET_KEY</code>,
+                      create Checkout Sessions on the server, and confirm with{" "}
                       <code className="rounded bg-muted px-1 text-xs">checkout.session.completed</code>{" "}
                       webhooks.
                     </>
                   ) : (
                     <>
-                      <strong>Keys detected:</strong> this repo still uses a demo completion path.
-                      Replace the submit handler with a server action that creates a Checkout Session
-                      and redirects to Stripe.
+                      <strong>Keys detected:</strong> this build still completes as a demo lead. Swap
+                      the submit handler for a server action that creates a Checkout Session and
+                      redirects to Stripe.
                     </>
                   )}
                 </CardDescription>
@@ -127,75 +127,96 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
             </CardHeader>
           </Card>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="unit">Bounce house</Label>
-              <select
-                id="unit"
-                name="unit"
-                className="flex h-10 w-full rounded-md border border-border bg-card px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                value={unitId}
-                onChange={(ev) => setUnitId(ev.target.value)}
-              >
-                {bounceHouses.map((b) => (
-                  <option key={b.id} value={b.id}>
-                    {b.name}
-                  </option>
-                ))}
-              </select>
+          <fieldset className="space-y-5 rounded-lg border border-border bg-card/60 p-4 shadow-sm sm:p-5">
+            <legend className="px-1 font-display text-sm font-semibold text-foreground">
+              Rental details
+            </legend>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="unit">Bounce house</Label>
+                <select
+                  id="unit"
+                  name="unit"
+                  className="flex h-11 w-full rounded-md border border-border bg-card px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  value={unitId}
+                  onChange={(ev) => setUnitId(ev.target.value)}
+                >
+                  {bounceHouses.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="zone">Delivery zone</Label>
+                <select
+                  id="zone"
+                  name="zone"
+                  className="flex h-11 w-full rounded-md border border-border bg-card px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  value={zoneId}
+                  onChange={(ev) => setZoneId(ev.target.value as ZoneId)}
+                >
+                  {zones.map((z) => (
+                    <option key={z.id} value={z.id}>
+                      {z.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="zone">Delivery zone</Label>
-              <select
-                id="zone"
-                name="zone"
-                className="flex h-10 w-full rounded-md border border-border bg-card px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                value={zoneId}
-                onChange={(ev) => setZoneId(ev.target.value as ZoneId)}
-              >
-                {zones.map((z) => (
-                  <option key={z.id} value={z.id}>
-                    {z.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="eventDate">Event date</Label>
-              <div className="flex items-center gap-2">
-                <CalendarClock className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
+          </fieldset>
+
+          <fieldset className="space-y-5 rounded-lg border border-border bg-card/60 p-4 shadow-sm sm:p-5">
+            <legend className="px-1 font-display text-sm font-semibold text-foreground">
+              Event schedule
+            </legend>
+            <p className="-mt-1 text-xs text-muted-foreground sm:text-sm">
+              Date and times help us quote — availability shown here is not live inventory until you
+              connect a calendar or ops tool.
+            </p>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="eventDate">Event date</Label>
+                <div className="flex min-h-11 items-center gap-2 rounded-md border border-border bg-card px-3 shadow-sm focus-within:ring-2 focus-within:ring-primary">
+                  <CalendarClock className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
+                  <Input
+                    id="eventDate"
+                    type="date"
+                    value={eventDate}
+                    onChange={(ev) => setEventDate(ev.target.value)}
+                    className="min-h-10 flex-1 border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground">{mockHint}</p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="startTime">Start time</Label>
                 <Input
-                  id="eventDate"
-                  type="date"
-                  value={eventDate}
-                  onChange={(ev) => setEventDate(ev.target.value)}
-                  className="flex-1"
+                  id="startTime"
+                  type="time"
+                  value={startTime}
+                  onChange={(ev) => setStartTime(ev.target.value)}
+                  className="h-11"
                 />
               </div>
-              <p className="text-xs text-muted-foreground">{mockHint}</p>
+              <div className="space-y-2">
+                <Label htmlFor="endTime">End time</Label>
+                <Input
+                  id="endTime"
+                  type="time"
+                  value={endTime}
+                  onChange={(ev) => setEndTime(ev.target.value)}
+                  className="h-11"
+                />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="startTime">Start time</Label>
-              <Input
-                id="startTime"
-                type="time"
-                value={startTime}
-                onChange={(ev) => setStartTime(ev.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="endTime">End time</Label>
-              <Input
-                id="endTime"
-                type="time"
-                value={endTime}
-                onChange={(ev) => setEndTime(ev.target.value)}
-              />
-            </div>
-          </div>
+          </fieldset>
 
-          <div className="space-y-4 border-t border-border pt-8">
-            <h2 className="font-display text-lg font-semibold">Your contact info</h2>
+          <fieldset className="space-y-4 rounded-lg border border-border bg-card/60 p-4 shadow-sm sm:p-5">
+            <legend className="px-1 font-display text-sm font-semibold text-foreground">
+              Your contact info
+            </legend>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="customerName">Full name</Label>
@@ -205,6 +226,7 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
                   onChange={(e) => setCustomerName(e.target.value)}
                   required
                   autoComplete="name"
+                  className="h-11"
                 />
               </div>
               <div className="space-y-2">
@@ -216,6 +238,7 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
                   onChange={(e) => setCustomerEmail(e.target.value)}
                   required
                   autoComplete="email"
+                  className="h-11"
                 />
               </div>
               <div className="space-y-2">
@@ -226,10 +249,11 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   autoComplete="tel"
+                  className="h-11"
                 />
               </div>
             </div>
-          </div>
+          </fieldset>
 
           {status ? (
             <p
@@ -242,11 +266,11 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
             </p>
           ) : null}
 
-          <div className="flex flex-wrap gap-3">
-            <Button type="submit" disabled={pending}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={pending}>
               {pending ? "Submitting…" : stripeDemo ? "Complete booking (demo)" : "Save lead (Checkout TODO)"}
             </Button>
-            <Button type="button" variant="outline" asChild>
+            <Button type="button" variant="outline" size="lg" className="w-full sm:w-auto" asChild>
               <Link href="/rentals">Back to rentals</Link>
             </Button>
           </div>
@@ -263,14 +287,28 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
               />
             ) : null}
             <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Production checklist</CardTitle>
-                <CardDescription className="text-xs leading-relaxed">
-                  Timezone: America/Los_Angeles. Enforce minimum setup/strike buffers. Block
-                  holidays in data. Use Stripe webhooks to confirm payment before promising the
-                  slot. Push the same lead payload to your CRM as the contact form.
-                </CardDescription>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">After design: calendar, CRM, Stripe</CardTitle>
               </CardHeader>
+              <CardContent className="pt-0">
+                <ul className="list-inside list-disc space-y-1.5 text-xs leading-relaxed text-muted-foreground">
+                  <li>
+                    <strong className="text-foreground">Calendar:</strong> America/Los_Angeles,
+                    buffers, holidays, real inventory (API, DB, or ops tool) — replace mock hints in
+                    this form.
+                  </li>
+                  <li>
+                    <strong className="text-foreground">CRM:</strong> POST the same shape as{" "}
+                    <code className="rounded bg-muted px-1 text-foreground">submitLead</code> (contact
+                    + booking) to your webhook or vendor.
+                  </li>
+                  <li>
+                    <strong className="text-foreground">Stripe:</strong> confirm payment via webhook
+                    before promising the slot; see{" "}
+                    <code className="rounded bg-muted px-1 text-foreground">src/lib/stripe.ts</code>.
+                  </li>
+                </ul>
+              </CardContent>
             </Card>
           </div>
         </aside>

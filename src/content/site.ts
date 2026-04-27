@@ -38,7 +38,8 @@ export interface FooterColumn {
 
 export const siteConfig = {
   name: "OC Bounce Co.",
-  tagline: "Delivered bounce houses for birthdays, churches, and celebrations across Orange County.",
+  tagline:
+    "Delivered, insured bounce houses for backyard birthdays, church gatherings, school parties, and neighborhood celebrations across Orange County.",
   contact: {
     email: "hello@ocbounco.example",
     phone: "(714) 555-0199",
@@ -136,16 +137,6 @@ export const bounceHouses: BounceHouse[] = [
     featured: true,
   },
   {
-    id: "sports-arena",
-    name: "Sports Arena",
-    shortDescription: "Bold graphics for team parties and school events.",
-    specs: ["High-visibility colors", "Open floor for games", "Great for mixed ages"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1576610616656-d3aa292f53a3?w=900&h=675&fit=crop",
-    imageAlt: "Children playing team sports outdoors",
-    priceByZone: { north_oc: 299, central_oc: 319, south_oc: 349 },
-  },
-  {
     id: "toddler-petite",
     name: "Toddler Petite",
     shortDescription: "Lower walls and softer bounce for the littlest guests.",
@@ -181,34 +172,41 @@ export const bounceHouses: BounceHouse[] = [
 export const howItWorksSteps = [
   {
     title: "Pick your date & unit",
-    body: "Choose a bounce house and tell us your event window. Calendar availability here is a preview — final confirmation comes after we review your address.",
+    body:
+      "Choose a bounce house and your event window — whether it is a Saturday birthday, a Sunday church picnic, or a weekday school celebration. Calendar hints on the site are a preview; final confirmation comes after we review your address.",
   },
   {
     title: "We confirm your zone",
-    body: "Orange County is split into three delivery zones. Your total reflects the unit plus travel for your area.",
+    body:
+      "Greater Orange County is split into three delivery zones (north, central, south). Your quote reflects the unit plus fair travel for your area — no surprise mileage fees after the fact.",
   },
   {
     title: "Setup & safety walkthrough",
-    body: "We deliver, inflate, stake or sandbag per manufacturer guidance, and review rules with your on-site contact before we head out.",
+    body:
+      "We deliver, inflate, and secure the unit per manufacturer guidance, then walk your on-site contact through rules and capacity — so parents, pastors, and PTO leads know what to expect.",
   },
   {
     title: "Strike & pickup",
-    body: "We return in the agreed window to pack up. Extensions may be available — ask during booking.",
+    body:
+      "We return in the agreed window to pack up. Need a longer window for a carnival or field day? Ask during booking — extensions may be available.",
   },
 ];
 
 export const featureHighlights = [
   {
     title: "Insured, pro setup",
-    body: "Commercial-grade units and a checklist-driven setup — details finalized in your rental agreement.",
+    body:
+      "Commercial-grade units and a checklist-driven setup — whether we are in a backyard, a church lot, or a school blacktop. Details are finalized in your rental agreement.",
   },
   {
     title: "Built for OC traffic",
-    body: "Zones keep pricing fair: closer routes stay leaner; longer coastal or canyon runs include realistic travel.",
+    body:
+      "Three delivery zones keep pricing predictable: closer routes stay leaner; longer coastal or canyon runs reflect real drive time — so your quote matches the map.",
   },
   {
-    title: "Event-friendly",
-    body: "Birthdays, baptisms, block parties, and school fairs — we speak “parent volunteer” fluently.",
+    title: "Made for real gatherings",
+    body:
+      "Birthdays, baptisms, VBS weekends, block parties, and school fairs — we are used to working with families, volunteers, and event coordinators.",
   },
 ];
 

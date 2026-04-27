@@ -3,12 +3,15 @@
 /**
  * Single exit point for leads (contact form, demo booking completion).
  *
+ * Design phase: this stub returns success and avoids logging PII. Replace the body when ready.
+ *
  * Wire-up options (choose when CRM is finalized):
  * - Zapier / Make webhook → HubSpot, Pipedrive, Go High Level
  * - Resend / SendGrid → email to owner + BCC
  * - Formspree / Getform with native CRM integration
  *
- * Keep `LeadPayload` fields stable so mapping to CRM columns stays trivial.
+ * Keep `LeadPayload` fields stable so mapping to CRM columns stays trivial. Booking and contact
+ * flows should send the same shape where possible so one automation handles both.
  */
 
 export type LeadPayload = {
