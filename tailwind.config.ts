@@ -29,11 +29,20 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        zone: {
+          north: "hsl(var(--zone-north))",
+          central: "hsl(var(--zone-central))",
+          south: "hsl(var(--zone-south))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      spacing: {
+        18: "4.5rem",
+        22: "5.5rem",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],

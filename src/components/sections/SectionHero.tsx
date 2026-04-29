@@ -12,7 +12,7 @@ export function SectionHero() {
             Orange County · Delivered &amp; setup
           </p>
           <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-balance text-foreground sm:text-5xl">
-            Bounce houses for parties that actually show up on time.
+            Bounce houses for birthdays, churches, and parties that show up on time.
           </h1>
           <p className="mt-4 max-w-xl text-lg text-muted-foreground">{siteConfig.tagline}</p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -20,15 +20,15 @@ export function SectionHero() {
               <Link href={siteConfig.bookCta.href}>{siteConfig.bookCta.label}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/rentals">Browse rentals</Link>
+              <Link href="/#rentals">Browse rentals</Link>
             </Button>
           </div>
           <p className="mt-6 text-sm text-muted-foreground">
-            Pricing varies by OC zone — see{" "}
-            <Link href="/service-areas" className="font-medium text-primary hover:underline">
+            Pricing varies by OC zone — jump to{" "}
+            <Link href="/#service-areas" className="font-medium text-primary hover:underline">
               service areas
-            </Link>
-            .
+            </Link>{" "}
+            below.
           </p>
         </div>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border bg-muted shadow-lg lg:aspect-square">

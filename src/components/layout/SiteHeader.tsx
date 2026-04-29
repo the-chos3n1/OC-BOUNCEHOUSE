@@ -14,7 +14,7 @@ export function SiteHeader() {
   const linkClass = (href: string) =>
     cn(
       "text-sm font-medium transition-colors hover:text-primary",
-      pathname === href ? "text-primary" : "text-foreground/80",
+      !href.includes("#") && pathname === href ? "text-primary" : "text-foreground/80",
     );
 
   return (

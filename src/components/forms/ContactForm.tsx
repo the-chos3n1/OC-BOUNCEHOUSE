@@ -39,67 +39,102 @@ export function ContactForm() {
   }
 
   return (
-    <form className="space-y-6" onSubmit={onSubmit}>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" name="name" required autoComplete="name" placeholder="Alex Rivera" />
+    <form className="space-y-8" onSubmit={onSubmit}>
+      <fieldset className="space-y-5 rounded-lg border border-border bg-card/60 p-4 shadow-sm sm:p-5">
+        <legend className="px-1 font-display text-sm font-semibold text-foreground">
+          How to reach you
+        </legend>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              name="name"
+              required
+              autoComplete="name"
+              placeholder="Alex Rivera"
+              className="h-11"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="you@example.com"
+              className="h-11"
+            />
+          </div>
+          <div className="space-y-2 sm:col-span-2">
+            <Label htmlFor="phone">Phone</Label>
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder="(714) 555-0100"
+              className="h-11 sm:max-w-md"
+            />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="space-y-5 rounded-lg border border-border bg-card/60 p-4 shadow-sm sm:p-5">
+        <legend className="px-1 font-display text-sm font-semibold text-foreground">
+          About your event
+        </legend>
+        <p className="-mt-1 text-xs text-muted-foreground sm:text-sm">
+          Birthdays, church gatherings, school events — a few details help us respond with the right
+          unit and zone.
+        </p>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2 sm:col-span-2">
+            <Label htmlFor="eventType">Event type</Label>
+            <Input
+              id="eventType"
+              name="eventType"
+              placeholder="Birthday, church picnic, school fair…"
+              className="h-11"
+            />
+          </div>
+          <div className="space-y-2 sm:col-span-2">
+            <Label htmlFor="eventDate">Preferred date</Label>
+            <Input id="eventDate" name="eventDate" type="date" className="h-11 sm:max-w-xs" />
+          </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            placeholder="you@example.com"
+          <Label htmlFor="message">Message</Label>
+          <Textarea
+            id="message"
+            name="message"
+            placeholder="Venue address, park name, gate codes, timing questions…"
+            rows={5}
+            className="min-h-[7.5rem] resize-y"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            placeholder="(714) 555-0100"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="eventType">Event type</Label>
-          <Input
-            id="eventType"
-            name="eventType"
-            placeholder="Birthday, church picnic, school fair…"
-          />
-        </div>
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="eventDate">Preferred date</Label>
-          <Input id="eventDate" name="eventDate" type="date" />
-        </div>
+      </fieldset>
+
+      <div className="flex flex-col gap-4 border-t border-border pt-2 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">{siteConfig.contact.responseTime}</p>
+        <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={pending}>
+          {pending ? "Sending…" : "Send message"}
+        </Button>
       </div>
-      <div className="space-y-2">
-        <Label htmlFor="message">Message</Label>
-        <Textarea
-          id="message"
-          name="message"
-          placeholder="Address, park name, timing questions…"
-          rows={5}
-        />
-      </div>
-      <p className="text-sm text-muted-foreground">{siteConfig.contact.responseTime}</p>
       {message ? (
         <p
           role="status"
-          className={message.type === "ok" ? "text-sm text-primary" : "text-sm text-red-600"}
+          className={
+            message.type === "ok"
+              ? "text-sm text-primary sm:-mt-2"
+              : "text-sm text-red-600 sm:-mt-2"
+          }
         >
           {message.text}
         </p>
       ) : null}
-      <Button type="submit" disabled={pending}>
-        {pending ? "Sending…" : "Send message"}
-      </Button>
     </form>
   );
 }
