@@ -49,32 +49,32 @@ export const siteConfig = {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",
   },
-  /** Primary CTA in header */
-  bookCta: { label: "Check availability", href: "/book" },
+  /** Primary CTA in header — scrolls to #book */
+  bookCta: { label: "Check availability", href: "/#book" },
 } as const;
 
+/** Homepage anchor nav (single-page scroll layout) */
 export const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Rentals", href: "/rentals" },
-  { label: "How it works", href: "/how-it-works" },
-  { label: "Service areas", href: "/service-areas" },
-  { label: "Contact", href: "/contact" },
+  { label: "Rentals", href: "/#rentals" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Service areas", href: "/#service-areas" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const footerColumns: FooterColumn[] = [
   {
     title: "Explore",
     links: [
-      { label: "Rentals", href: "/rentals" },
-      { label: "Book", href: "/book" },
-      { label: "How it works", href: "/how-it-works" },
+      { label: "Rentals", href: "/#rentals" },
+      { label: "Book", href: "/#book" },
+      { label: "How it works", href: "/#how-it-works" },
     ],
   },
   {
     title: "Service",
     links: [
-      { label: "Service areas", href: "/service-areas" },
-      { label: "Contact", href: "/contact" },
+      { label: "Service areas", href: "/#service-areas" },
+      { label: "Contact", href: "/#contact" },
     ],
   },
   {

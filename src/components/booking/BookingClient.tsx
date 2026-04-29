@@ -20,6 +20,8 @@ import { PricingBreakdown } from "@/components/sections/PricingBreakdown";
 type BookingClientProps = {
   stripeDemo: boolean;
   initialUnitId?: string;
+  /** When true, used inside one-page scroll — use section heading semantics */
+  embedded?: boolean;
 };
 
 /**
@@ -27,7 +29,7 @@ type BookingClientProps = {
  * Production needs: America/Los_Angeles timezone, buffers, same-day cutoff, holidays,
  * and a real data source (Calendar API, DB, or ops tool).
  */
-export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps) {
+export function BookingClient({ stripeDemo, initialUnitId, embedded }: BookingClientProps) {
   const defaultZone = zones[1]?.id ?? "central_oc";
   const defaultUnit =
     (initialUnitId && getBounceHouseById(initialUnitId)?.id) ||
@@ -89,7 +91,16 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <div className="max-w-2xl">
-        <h1 className="font-display text-4xl font-bold tracking-tight">Book a bounce house</h1>
+        {embedded ? (
+          <h2
+            id="book-heading"
+            className="font-display text-4xl font-bold tracking-tight scroll-mt-24 sm:scroll-mt-28"
+          >
+            Book a bounce house
+          </h2>
+        ) : (
+          <h1 className="font-display text-4xl font-bold tracking-tight">Book a bounce house</h1>
+        )}
         <p className="mt-3 text-muted-foreground">
           Choose your zone, unit, and event window. Calendar hints are placeholders until you connect
           real availability.
@@ -264,7 +275,7 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
               {pending ? "Submitting…" : stripeDemo ? "Complete booking (demo)" : "Save lead (Checkout TODO)"}
             </Button>
             <Button type="button" variant="outline" size="lg" className="w-full sm:w-auto" asChild>
-              <Link href="/rentals">Back to rentals</Link>
+              <Link href="/#rentals">Back to rentals</Link>
             </Button>
           </div>
         </form>

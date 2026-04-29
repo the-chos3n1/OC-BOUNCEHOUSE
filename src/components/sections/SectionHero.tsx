@@ -20,15 +20,15 @@ export function SectionHero() {
               <Link href={siteConfig.bookCta.href}>{siteConfig.bookCta.label}</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/rentals">Browse rentals</Link>
+              <Link href="/#rentals">Browse rentals</Link>
             </Button>
           </div>
           <p className="mt-6 text-sm text-muted-foreground">
-            Pricing varies by OC zone — see{" "}
-            <Link href="/service-areas" className="font-medium text-primary hover:underline">
+            Pricing varies by OC zone — jump to{" "}
+            <Link href="/#service-areas" className="font-medium text-primary hover:underline">
               service areas
-            </Link>
-            .
+            </Link>{" "}
+            below.
           </p>
         </div>
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-border bg-muted shadow-lg lg:aspect-square">

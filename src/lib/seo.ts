@@ -26,11 +26,10 @@ export const rootOgTitle = `${siteConfig.name} · Orange County bounce house ren
 
 export const rootOgDescription = siteConfig.tagline;
 
-export type SeoPath = "/" | "/book" | "/rentals" | "/contact" | "/how-it-works" | "/service-areas";
+export type SeoPath = "/";
 
 /**
- * Per-route metadata. Omit `titleSegment` for the home page so the root `title.default` applies.
- * Other routes pass a short segment; layout `title.template` becomes "{segment} · {siteName}".
+ * Single-page layout: only `/` accepts metadata; paths like `/#rentals` are in-page anchors.
  */
 export function buildPageMetadata(args: {
   path: SeoPath;

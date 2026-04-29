@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${display.variable}`}>
+    <html lang="en" className={`scroll-smooth ${geistSans.variable} ${display.variable}`}>
       <body className="relative min-h-dvh font-sans text-base leading-relaxed">
         <LocalBusinessJsonLd />
         <a

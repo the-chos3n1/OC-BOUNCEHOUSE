@@ -2,6 +2,7 @@
 
 Next.js (App Router) site with a data-driven layout: edit `src/content/site.ts` for copy, inventory, zones, and nav.
 
+Marketing is a **single scrolling page** on `/` (hero through contact). Header/footer links use anchors such as `/#book` and `/#rentals`. Paths like `/contact` redirect to the same page with the right hash (`src/middleware.ts`).
 ## Run locally
 
 ```bash

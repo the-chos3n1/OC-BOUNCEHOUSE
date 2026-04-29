@@ -45,7 +45,7 @@ export function ProductCard({ house, highlightZone }: ProductCardProps) {
           Final total depends on zone, add-ons, and taxes — see booking preview.
         </p>
         <Button asChild variant="outline" className="w-full">
-          <Link href={`/book?unit=${house.id}`}>Start booking</Link>
+          <Link href={`/?unit=${encodeURIComponent(house.id)}#book`}>Start booking</Link>
         </Button>
       </CardContent>
     </Card>
