@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact",
-};
+export const metadata: Metadata = buildPageMetadata({
+  path: "/contact",
+  titleSegment: "Contact",
+  description: `Questions or custom event needs? Reach ${siteConfig.name} — we serve Orange County and reply within one business day.`,
+});
 
 export default function ContactPage() {
   return (

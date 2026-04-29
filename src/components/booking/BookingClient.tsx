@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { TimePickerField } from "@/components/ui/time-picker-field";
 import { PricingBreakdown } from "@/components/sections/PricingBreakdown";
 
 type BookingClientProps = {
@@ -192,23 +193,15 @@ export function BookingClient({ stripeDemo, initialUnitId }: BookingClientProps)
               </div>
               <div className="space-y-2">
                 <Label htmlFor="startTime">Start time</Label>
-                <Input
+                <TimePickerField
                   id="startTime"
-                  type="time"
                   value={startTime}
-                  onChange={(ev) => setStartTime(ev.target.value)}
-                  className="h-11"
+                  onChange={setStartTime}
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="endTime">End time</Label>
-                <Input
-                  id="endTime"
-                  type="time"
-                  value={endTime}
-                  onChange={(ev) => setEndTime(ev.target.value)}
-                  className="h-11"
-                />
+                <TimePickerField id="endTime" value={endTime} onChange={setEndTime} />
               </div>
             </div>
           </fieldset>

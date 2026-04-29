@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import { howItWorksSteps } from "@/content/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "How it works",
-};
+export const metadata: Metadata = buildPageMetadata({
+  path: "/how-it-works",
+  titleSegment: "How it works",
+  description:
+    "How bounce house rentals work in OC — choose your unit and zone, scheduled delivery with setup and safety briefing, then pickup after your birthday, church, or school event.",
+});
 
 export default function HowItWorksPage() {
   return (

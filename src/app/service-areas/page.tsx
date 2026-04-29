@@ -1,12 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { zones } from "@/content/site";
+import { buildPageMetadata } from "@/lib/seo";
 import { ZoneCard } from "@/components/sections/ZoneCard";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "Service areas",
-};
+export const metadata: Metadata = buildPageMetadata({
+  path: "/service-areas",
+  titleSegment: "Service areas",
+  description:
+    "Orange County bounce house delivery zones — North OC, Central OC, and South OC — transparent pricing by area for parties and gatherings countywide.",
+});
 
 export default function ServiceAreasPage() {
   return (

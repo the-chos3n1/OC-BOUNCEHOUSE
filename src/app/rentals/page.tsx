@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { bounceHouses } from "@/content/site";
+import { buildPageMetadata } from "@/lib/seo";
 import { ProductCard } from "@/components/sections/ProductCard";
 
-export const metadata = {
-  title: "Rentals",
-};
+export const metadata: Metadata = buildPageMetadata({
+  path: "/rentals",
+  titleSegment: "Rentals",
+  description:
+    "Browse inflatable bounce houses and combos for Orange County parties — prices by zone (North OC, Central OC, South OC) with delivery and professional setup.",
+});
 
 export default function RentalsPage() {
   return (

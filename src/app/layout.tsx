@@ -4,6 +4,8 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { siteConfig } from "@/content/site";
+import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
+import { getSiteUrl, rootOgDescription, siteKeywords } from "@/lib/seo";
 
 const geistSans = DM_Sans({
   subsets: ["latin"],
@@ -17,12 +19,29 @@ const display = Outfit({
   display: "swap",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${siteConfig.name} · Orange County bounce house rentals`,
     template: `%s · ${siteConfig.name}`,
   },
-  description: siteConfig.tagline,
+  description: rootOgDescription,
+  keywords: siteKeywords,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} · Orange County bounce house rentals`,
+    description: rootOgDescription,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} · Orange County bounce house rentals`,
+    description: rootOgDescription,
+  },
 };
 
 export default function RootLayout({
@@ -33,6 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${display.variable}`}>
       <body className="relative min-h-dvh font-sans text-base leading-relaxed">
+        <LocalBusinessJsonLd />
         <a
           href="#main-content"
           className="absolute left-4 top-0 z-[100] -translate-y-24 rounded-md bg-card px-4 py-2 text-sm font-medium text-foreground shadow-md transition-transform focus:translate-y-4 focus:outline-none focus:ring-2 focus:ring-primary"
